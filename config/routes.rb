@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, except: %i[index new create] do
+  resources :users, except: %i[new create] do
     resources :orders do
       resources :item_orders
     end
