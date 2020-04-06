@@ -1,0 +1,3 @@
+<%= @orders.first.user.email %>
+<% @orders.each do |order| %>
+<%= link_to user_order_item_order_path(order) %>

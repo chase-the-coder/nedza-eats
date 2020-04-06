@@ -47,4 +47,3 @@ class ItemOrdersController < ApplicationController
   end
 end
 
-end
