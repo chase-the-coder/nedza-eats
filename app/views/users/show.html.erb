@@ -1,0 +1,9 @@
+<div class="container">
+  <% @user.orders.each do |order| %>
+    <%= link_to user_order_path(order) do %>
+      <li> <%= order.id %> </li>
+    <% end %>
+  <% end %>
+    <%= link_to "new order",  new_user_order_path(@user) %>
+  <button type="button" class="btn btn-success">Success</button>
+</div>

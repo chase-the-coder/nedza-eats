@@ -1,4 +1,4 @@
 <%= @orders.first.user.email %>
 <% @orders.each do |order| %>
-<%= link_to "test order", user_order_path(order, order.user_id) %>
+<%= link_to "test order", user_order_path(order, @user) %>
 <% end %>
