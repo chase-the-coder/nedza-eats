@@ -10,10 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_180405) do
+ActiveRecord::Schema.define(version: 2020_04_06_181536) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "item_orders", force: :cascade do |t|
+    t.string "instructions"
+    t.integer "quantity"
+    t.bigint "order_id"
+    t.boolean "gluten_free", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_item_orders_on_order_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "item_order_id"
+    t.string "name"
+    t.string "description"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_order_id"], name: "index_items_on_item_order_id"
+  end
 
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
@@ -36,5 +56,7 @@ ActiveRecord::Schema.define(version: 2020_04_06_180405) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "item_orders", "orders"
+  add_foreign_key "items", "item_orders"
   add_foreign_key "orders", "users"
 end
